@@ -62,6 +62,40 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
+## Release builds for Google Play
+
+Current release target: version **0.0.2** (Android `versionCode` 2).
+
+Follow these steps before uploading to the Google Play Console:
+
+1. **Create a release keystore** (runs once):
+	```powershell
+	keytool -genkeypair -v -storetype PKCS12 -keystore android\app\release.keystore -alias release -keyalg RSA -keysize 4096 -validity 9125
+	```
+	Replace the alias, password, and validity as needed. Keep the resulting keystore secret and back it up securely.
+
+2. **Configure signing credentials:**
+		- Copy `android/keystore.properties.example` to `android/keystore.properties` (this file is ignored by git).
+		- Fill in the values for `storeFile`, `storePassword`, `keyAlias`, and `keyPassword`. The `storeFile` path is resolved relative to `android/app`.
+	- In CI, write this file at build time from secured secret variables instead of committing it.
+
+3. **Install dependencies and build the release bundle:**
+	```powershell
+	cd android
+	./gradlew clean bundleRelease
+	```
+	The build produces an AAB at `android/app/build/outputs/bundle/release/app-release.aab`.
+
+4. **Test the release artifact:**
+	- Use `bundletool` or an internal testing track on the Play Console to verify installation.
+	- Run through critical user flows on a release build to ensure no regressions.
+
+5. **Upload to Google Play:**
+	- Increment `versionName`/`versionCode` in `android/app/build.gradle` for each submission.
+	- Attach release notes, screenshots, and complete the Play Console checklists.
+
+Refer to the [React Native publishing guide](https://reactnative.dev/docs/signed-apk-android) for more details on release management.
+
 ## Step 3: Modify your app
 
 Now that you have successfully run the app, let's make changes!
@@ -81,6 +115,30 @@ You've successfully run and modified your React Native App. :partying_face:
 
 - If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
 - If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+
+## Ship it: Android release builds
+
+1. **Generate a release keystore** (one-time):
+	```powershell
+	keytool -genkeypair -v -storetype PKCS12 -keystore android\app\my-release-key.jks -alias matrixchatRelease -keyalg RSA -keysize 4096 -validity 3650
+	```
+2. **Configure signing secrets:**
+	- Copy `android/keystore.properties.sample` to `android/keystore.properties`.
+	- Replace the placeholder values with the keystore path, alias, and passwords you just used. Keep the populated file out of source control.
+	- Alternatively, export the same values as environment variables (`RELEASE_STORE_FILE`, `RELEASE_KEY_ALIAS`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_PASSWORD`).
+3. **Build the Play Store bundle:**
+	```powershell
+	cd android
+	.\gradlew.bat bundleRelease
+	```
+	The signed AAB will be created at `android/app/build/outputs/bundle/release/app-release.aab`.
+4. **Smoke-test the release APK (optional but recommended):**
+	```powershell
+	.\gradlew.bat assembleRelease
+	```
+	Install the resulting APK on a device/emulator and verify the critical flows before uploading.
+
+> Tip: Each time you bump the `version` in `package.json`, the Android `versionCode` and `versionName` are updated automatically. Remember that Google Play requires the `versionCode` to increase for every upload.
 
 # Troubleshooting
 
