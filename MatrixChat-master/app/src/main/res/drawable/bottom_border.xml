@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background color (transparent or any color you want) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Bottom border -->
+    <item android:bottom="1dp"> <!-- Adjust thickness as needed -->
+        <shape android:shape="rectangle">
+            <solid android:color="@color/light_blue" /> <!-- Grey border -->
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Schedule Message"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
+        android:textColor="@color/navy_blue"
+        android:paddingBottom="8dp"/>
+
+    <!-- Profile Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="12dp">
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/user"
+            android:background="@drawable/circular_container"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Name and ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Samel"
+                android:fontFamily="@font/quicksand"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/navy_blue"/>
+
+            <TextView
+                android:id="@+id/user_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="\@matrix:samel"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Message Input -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:fontFamily="@font/quicksand"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/navy_blue"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/message_input"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bordered_input"
+        android:hint="Type your message"
+        android:fontFamily="@font/quicksand"
+        android:paddingHorizontal="12dp"
+        android:textSize="14sp"/>
+
+    <!-- Username Input -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textStyle="bold"
+        android:fontFamily="@font/quicksand"
+        android:textSize="14sp"
+        android:textColor="@color/navy_blue"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bordered_input"
+        android:hint="Enter username"
+        android:fontFamily="@font/quicksand"
+        android:paddingHorizontal="12dp"
+        android:textSize="14sp"/>
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:fontFamily="@font/quicksand"
+        android:background="@drawable/filled_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"/>
+
+    <!-- Info Text -->
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You can schedule message\nIt’ll be sent even if you are offline"
+        android:textSize="12sp"
+        android:fontFamily="@font/quicksand"
+        android:textColor="@color/grey"
+        android:gravity="center"
+        android:layout_marginTop="8dp"/>
+</LinearLayout>

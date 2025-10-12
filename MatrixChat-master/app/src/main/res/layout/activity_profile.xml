@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="0dp"
+            android:paddingVertical="10dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/back" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Profile"
+                android:textColor="@color/navy_blue"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/exit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bottom_border"
+            android:orientation="horizontal" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/circular_container"
+                app:cardCornerRadius="30dp"
+                android:padding="1dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/toolbarAvatarImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circular_container"
+                    android:padding="1dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/user" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/martixIdLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="Martix ID"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="20sp" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/matrixIdText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:background="@drawable/bordered_input"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/quicksand"
+                        android:hint="Matrix id"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:textColorHint="@color/grey"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:id="@+id/copyId"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/copy" />
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/usernameLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="Username"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/usernameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:background="@drawable/bordered_input"
+                        android:ems="10"
+                        android:fontFamily="@font/quicksand"
+                        android:hint="Username"
+                        android:inputType="text"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:padding="8dp"
+                        android:textColorHint="@color/grey"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:id="@+id/copyName"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/copy" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/passwordLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="About"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="20sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:background="@drawable/bordered_input"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/quicksand"
+                        android:hint="About"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:textColorHint="@color/grey"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:id="@+id/copyAbout"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/copy" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/forgotText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="Forgot password? Recover"
+                    android:textColor="@color/grey"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/filled_button"
+                android:fontFamily="@font/quicksand_semibold"
+                android:text="Remove Avatar"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/forgotPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:text="Forgot password? Recover"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

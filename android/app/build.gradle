@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+import java.util.Properties
+
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -56,6 +59,7 @@ react {
 
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ * Disabled for now to avoid stripping classes required by React Native libraries.
  */
 def enableProguardInReleaseBuilds = false
 
@@ -72,6 +76,37 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+def loadPackageVersion() {
+    def packageJsonFile = rootProject.file("../package.json")
+    if (!packageJsonFile.exists()) {
+        return [name: "1.0.0", code: 1]
+    }
+
+    def parsed = new JsonSlurper().parseText(packageJsonFile.text)
+    def rawVersion = parsed.version ?: "1.0.0"
+
+    def numericParts = rawVersion.tokenize('.')
+            .collect { it.replaceAll(/[^0-9]/, '') }
+            .findAll { !it.isEmpty() }
+
+    def major = numericParts.size() > 0 ? numericParts[0].toInteger() : 0
+    def minor = numericParts.size() > 1 ? numericParts[1].toInteger() : 0
+    def patch = numericParts.size() > 2 ? numericParts[2].toInteger() : 0
+
+    def computedCode = (major * 10000) + (minor * 100) + patch
+    computedCode = Math.max(computedCode, 1)
+
+    [name: rawVersion, code: computedCode]
+}
+
+def appVersion = loadPackageVersion()
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -82,8 +117,9 @@ android {
         applicationId "com.clonematrixchatrecatnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersion.code
+        versionName appVersion.name
+    manifestPlaceholders = [usesCleartextTraffic: "true"]
     }
     signingConfigs {
         debug {
@@ -92,16 +128,35 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (!keystorePropertiesFile.exists()) {
+                throw new GradleException("Release signing requires android/keystore.properties. See README for setup instructions.")
+            }
+            def storeFilePath = keystoreProperties.getProperty("storeFile")
+            if (!storeFilePath) {
+                throw new GradleException("Missing 'storeFile' entry in keystore.properties")
+            }
+            ["storePassword", "keyAlias", "keyPassword"].each { propertyKey ->
+                if (!keystoreProperties.getProperty(propertyKey)) {
+                    throw new GradleException("Missing '${propertyKey}' entry in keystore.properties")
+                }
+            }
+            storeFile file(storeFilePath)
+            storePassword keystoreProperties.getProperty("storePassword")
+            keyAlias keystoreProperties.getProperty("keyAlias")
+            keyPassword keystoreProperties.getProperty("keyPassword")
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [usesCleartextTraffic: "true"]
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
+            shrinkResources enableProguardInReleaseBuilds
+            manifestPlaceholders = [usesCleartextTraffic: "true"]
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }

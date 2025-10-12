@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialogContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="15dp">
+        <!-- Profile Picture -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="12dp"
+            android:background="@color/colorSecondaryVariant"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/dialogAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circular_container"
+                android:padding="0dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/user" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Message Content -->
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Name & Time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dialogName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="Room"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Message & Status -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/message_status"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/check"
+                    android:visibility="gone"
+                    app:tint="@color/grey" />
+
+                <ImageView
+                    android:id="@+id/dialogLastMessageUserAvatar"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/circular_container"
+                    android:padding="5dp"
+                    android:src="@drawable/user" />
+
+                <TextView
+                    android:id="@+id/dialogLastMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/quicksand"
+                    android:maxWidth="450dp"
+                    android:maxLines="1"
+                    android:text="Hi there! This is my last even..."
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialogDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand"
+                android:text="04:24"
+                android:textColor="@color/grey"
+                android:textSize="12sp" />
+            <!-- Unread Count -->
+            <TextView
+                android:id="@+id/dialogUnreadBubble"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/circle_unread"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bottom_border"
+        android:orientation="horizontal" />
+
+</LinearLayout>

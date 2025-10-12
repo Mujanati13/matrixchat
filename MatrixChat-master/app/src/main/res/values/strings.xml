@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MatrixChat</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="homeserver_url">http://195.15.212.132</string>
+    <string name="about_us_full_text">Matrixchat is a PGP end-to-end encrypted messenger with a focus on security and privacy.</string>
+    <string name="about_us_full_text1">
+        When you create an account, Matrixchat creates a recovery seed. Write it down. If you forget your password, you can reset your password if you provide the correct word combination.
+        \n
+        The app is PIN protected. If you enter the wrong PIN three times, the app will be reset.
+        \n
+        The security and privacy of our users are our top priority.
+    </string>
+    <string name="about_us_full_text2">
+        Thanks to end-to-end encryption, no one other than the intended recipient can read or listen to transmitted messages, not even Matrixchat as the service provider. No personal data is required to use it.
+    </string>
+    <string name="about_us_full_text3">
+        Matrixchat does not store messages on its servers. To receive messages, you must be logged in to your account on one device; otherwise, you will not receive any messages.
+    </string>
+    <string name="about_us_full_text4">
+        Matrixchat operates its own servers at independent locations in Switzerland. If one location fails, another can be immediately switched over to ensure uninterrupted operation.
+        \n \n
+        Matrixchat is not financed by advertising and does not collect any user data
+    </string>
+    <string name="bitcoin_address">bc1q7wsvwqz54mmjqqh7lsgj0t7r9xeml3l63k0k8f</string>
+    <string name="monero_address">49xnpzVysTYQjC6tiAvAdHYG26F35Xkc8L4ctMrEkvPpRDjfoYkuTGqaEcXv8SXEwLHomkDDnavA27KKMEkxQNhjTnXDAFD</string>
+
+
+</resources>
